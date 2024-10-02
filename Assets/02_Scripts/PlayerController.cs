@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = Vector2.zero;
         };
+
+        attackAction.action.performed += _ =>
+        {
+            Debug.Log("공격");
+        };
     }
 
     void Start()
@@ -29,5 +34,8 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log($"x={moveInput.x} / y={moveInput.y}");
         //moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        //if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)) Debug.Log("공격");
+
     }
 }
