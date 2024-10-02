@@ -3,17 +3,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputActionProperty moveAction;
+    [SerializeField] private InputActionProperty moveAction; // Vector2 (x, y)
+    [SerializeField] private InputActionProperty attackAction; // 버튼 bool
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Vector2 moveInput;
+
+    void OnEnable()
+    {
+        moveAction.action.performed += (ctx) =>
+        {
+            moveInput = ctx.ReadValue<Vector2>();
+        };
+    }
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        Debug.Log($"x={moveInput.x} / y={moveInput.y}");
+        //moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 }
