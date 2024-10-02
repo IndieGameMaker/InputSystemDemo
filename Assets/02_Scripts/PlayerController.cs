@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = ctx.ReadValue<Vector2>();
         };
+        moveAction.action.canceled += (ctx) =>
+        {
+            moveInput = Vector2.zero;
+        };
     }
 
     void Start()
