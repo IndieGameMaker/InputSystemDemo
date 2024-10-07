@@ -56,10 +56,14 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDir = (camForward * moveInput.y) + (camRight * moveInput.x);
         moveDir.Normalize();
 
-        // 회전 처리
-        transform.rotation = Quaternion.LookRotation(moveDir);
+        if (moveDir != Vector3.zero)
+        {
+            // 회전 처리
+            transform.rotation = Quaternion.LookRotation(moveDir);
+        }
         // 이동 처리
         controller.Move(moveDir * Time.deltaTime * 8.0f);
+        // 애니메이션 설정
         animator.SetFloat(hashMovement, controller.velocity.magnitude);
     }
 }
